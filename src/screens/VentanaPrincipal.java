@@ -7,7 +7,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 public class VentanaPrincipal extends JFrame{
-    public JDesktopPane desktop; //Escritorio dentro del Frame
+    public JDesktopPane desktop;  // Escritorio dentro del Frame
     private JMenuBar jMenuBar;
     private JMenu jMenuAlumnos;
     private JMenu jMenuCarreras;
@@ -16,44 +16,45 @@ public class VentanaPrincipal extends JFrame{
     private JMenuItem jMenuItemInsertarCarreras;
     private JMenuItem jMenuItemVerCarreras;
 
-
-
-    public VentanaPrincipal (String title){
+    public VentanaPrincipal(String title){
         this.setTitle(title);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-         initComponets();
+        initComponents();
     }
 
-    private void initComponets(){
-        //Desktop - escritorio
+    private void initComponents(){
+        // DesktopPane - escritorio
         desktop = new JDesktopPane();
         this.add(desktop);
-        //Barra menu
+        this.setContentPane(desktop); 
+        // Barra de Menu
         jMenuBar = new JMenuBar();
-        this.add(jMenuBar);
-        //Menu alumnos
+        // this.add(jMenuBar);
+        // Menu Alumnos
         jMenuAlumnos = new JMenu();
         jMenuAlumnos.setText("Alumnos");
         // Elemento de menu: Insertar
         jMenuItemInsertar = new JMenuItem();
         jMenuItemInsertar.setText("Insertar...");
-        // Elemento de menu: Ver Alumnos
+        // Elemento de menu: Ver alumnos
         jMenuItemVerAlumnos = new JMenuItem();
         jMenuItemVerAlumnos.setText("Ver todos los alumnos...");
-        // Menu carrera 
+
+        // Menú Carreras
         jMenuCarreras = new JMenu();
         jMenuCarreras.setText("Carreras");
-        // Elemento de menu: Ver Alumnos
+        // Elemento de menu: Ver Carreras
         jMenuItemVerCarreras = new JMenuItem();
         jMenuItemVerCarreras.setText("Ver todas las carreras...");
-        // Elemento de menu: Insertar Carrera
+        // Elemento de menu: Insertar carrera
         jMenuItemInsertarCarreras = new JMenuItem();
         jMenuItemInsertarCarreras.setText("Insertar...");
 
+        jMenuItemInsertarCarreras.addActionListener(e -> jmiInsertarCarreras());
+       
 
 
-
-        // A gregar menuItem a Menú
+        // Agregar menuItem a menu 
         jMenuAlumnos.add(jMenuItemVerAlumnos);
         jMenuAlumnos.add(jMenuItemInsertar);
         jMenuBar.add(jMenuAlumnos);
@@ -65,4 +66,12 @@ public class VentanaPrincipal extends JFrame{
         this.setJMenuBar(jMenuBar);
         pack();
     }
+
+    private void jmiInsertarCarreras(){
+        JInternalFrameInsertarCarrera insertarCarrera = new JInternalFrameInsertarCarrera();
+        this.desktop.add(insertarCarrera);
+        insertarCarrera.setVisible(true);
+    }
+
+    
 }
