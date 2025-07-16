@@ -11,10 +11,13 @@ public class VentanaPrincipal extends JFrame{
     private JMenuBar jMenuBar;
     private JMenu jMenuAlumnos;
     private JMenu jMenuCarreras;
+    private JMenu jMenuBachilleratos;
     private JMenuItem jMenuItemInsertar;
     private JMenuItem jMenuItemVerAlumnos;
     private JMenuItem jMenuItemInsertarCarreras;
     private JMenuItem jMenuItemVerCarreras;
+    private JMenuItem jMenuItemInsertarBachilleratos;
+    private JMenuItem jMenuItemVerBachilleratos;
 
     public VentanaPrincipal(String title){
         this.setTitle(title);
@@ -50,10 +53,20 @@ public class VentanaPrincipal extends JFrame{
         jMenuItemInsertarCarreras = new JMenuItem();
         jMenuItemInsertarCarreras.setText("Insertar...");
 
-        // Agregar el listener de eventos para ejecutar la acción de ejecutar carrera
+        //Menu bachilleratos
+        jMenuBachilleratos = new JMenu();
+        jMenuBachilleratos.setText("Bachilleratos");
 
-        jMenuItemInsertarCarreras.addActionListener(e -> jmiInsertarCarreras());
-       
+        jMenuItemVerBachilleratos = new JMenuItem();
+        jMenuItemVerBachilleratos.setText("Ver todos los bachilleratos...");
+
+        jMenuItemInsertarBachilleratos = new JMenuItem();
+        jMenuItemInsertarBachilleratos.setText("Insertar..."); 
+
+
+        //Agregar el listenr de eventos para ejecutar la accion de insertar carrera 
+        jMenuItemInsertarCarreras.addActionListener(e -> insertarCarreras()); 
+        jMenuItemInsertarBachilleratos.addActionListener(e -> insertarBachilleratos()); 
 
 
         // Agregar menuItem a menu 
@@ -65,22 +78,27 @@ public class VentanaPrincipal extends JFrame{
         jMenuCarreras.add(jMenuItemInsertarCarreras);
         jMenuBar.add(jMenuCarreras);
 
+        jMenuBachilleratos.add(jMenuItemVerBachilleratos);
+        jMenuBachilleratos.add(jMenuItemInsertarBachilleratos);
+        jMenuBar.add(jMenuBachilleratos);
+
         this.setJMenuBar(jMenuBar);
         pack();
     }
 
-    private void jmiInsertarCarreras(){
-        //Paso 1
-        // Crear un objeto tipo jInternalFrame
+    private void insertarCarreras(){
+        //1. Crear un objeto tipo JInternatFrame 
         JInternalFrameInsertarCarrera insertarCarrera = new JInternalFrameInsertarCarrera();
-
-        // Paso 2
-        // Agregar el internal frame al escritorio(desktop)
+        //2. Agrega el ineternal Frame al escritorio(deskop)
         this.desktop.add(insertarCarrera);
-
-        // Paso 3
-        //Hacer visible el internal frame
+        //3. Hacer visible el internal frame
         insertarCarrera.setVisible(true);
+    }
+
+    private void insertarBachilleratos(){
+        JInternalFrameInsertarBachillerato insertarBachilleratos = new JInternalFrameInsertarBachillerato();
+        this.desktop.add(insertarBachilleratos);
+        insertarBachilleratos.setVisible(true);
     }
 
     
