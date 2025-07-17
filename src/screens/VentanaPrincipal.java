@@ -1,5 +1,7 @@
 package screens;
 
+import java.sql.Connection;
+
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -7,6 +9,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 public class VentanaPrincipal extends JFrame{
+    private Connection conn;
     public JDesktopPane desktop;  // Escritorio dentro del Frame
     private JMenuBar jMenuBar;
     private JMenu jMenuAlumnos;
@@ -18,8 +21,10 @@ public class VentanaPrincipal extends JFrame{
     private JMenuItem jMenuItemVerCarreras;
     private JMenuItem jMenuItemInsertarBachilleratos;
     private JMenuItem jMenuItemVerBachilleratos;
+   
 
-    public VentanaPrincipal(String title){
+    public VentanaPrincipal(String title, Connection conn){
+        this.conn = conn;
         this.setTitle(title);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         initComponents();
@@ -88,7 +93,7 @@ public class VentanaPrincipal extends JFrame{
 
     private void insertarCarreras(){
         //1. Crear un objeto tipo JInternatFrame 
-        JInternalFrameInsertarCarrera insertarCarrera = new JInternalFrameInsertarCarrera();
+        JInternalFrameInsertarCarrera insertarCarrera = new JInternalFrameInsertarCarrera(this.conn);
         //2. Agrega el ineternal Frame al escritorio(deskop)
         this.desktop.add(insertarCarrera);
         //3. Hacer visible el internal frame

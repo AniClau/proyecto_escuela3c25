@@ -4,6 +4,13 @@ public class Carrera {
     private int idCarrera;
     private String nombre;
     private double monto;
+
+
+    public Carrera(int idCarrera, String nombre, double monto) {
+        this.idCarrera = idCarrera;
+        this.nombre = nombre;
+        this.monto = monto;
+    }
     public int getIdCarrera() {
         return idCarrera;
     }
